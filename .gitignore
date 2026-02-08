@@ -1,35 +1,24 @@
-# =========================
-# Python cache
-# =========================
+# Python bytecode / cache
 __pycache__/
 *.py[cod]
 
-# =========================
 # Virtual environments
-# =========================
 venv/
 .venv/
 
-# =========================
-# Environment files (NO subir)
-# =========================
+# Environment files
 .env
 .env.*
+!.env.example
 
-# =========================
-# Logs
-# =========================
-*.log
-
-# =========================
-# OS / Editor
-# =========================
-.DS_Store
-Thumbs.db
+# IDEs / editors
 .vscode/
 .idea/
+.DS_Store
+Thumbs.db
 
-# =========================
-# Local databases (si usas sqlite)
-# =========================
+# Logs
+*.log
+
+# Local databases (if you use sqlite later)
 *.sqlite3

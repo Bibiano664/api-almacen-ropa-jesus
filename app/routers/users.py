@@ -14,13 +14,16 @@ class UserCreate(BaseModel):
 
 @router.get("/", status_code=status.HTTP_200_OK)
 def get_users():
-    return list_users()
+    """Return the current in-memory users list."""
+    return {"items": list_users(), "count": len(list_users())}
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
 def post_user(payload: UserCreate):
-    return create_user(
+    """Create a new user (in-memory)."""
+    user = create_user(
         name=payload.name,
         role=payload.role,
         active=payload.active
     )
+    return {"message": "User created", "user": user}
