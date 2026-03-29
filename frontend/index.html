@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Almacén de Ropa | Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Almacén de Ropa</h1>
+        <p class="subtitle">Panel web (Frontend I) consumiendo tu API FastAPI</p>
+      </div>
+    </div>
+
+    <div class="health" id="healthBox">
+      <div class="pill" id="healthPill">Conectando…</div>
+      <div class="muted" id="healthMeta">API: <span id="apiBaseText"></span></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="grid">
+      <article class="card">
+        <div class="card__header">
+          <h2>Usuarios</h2>
+          <button class="btn" id="btnRefreshUsers">Actualizar</button>
+        </div>
+
+        <form class="form" id="formUser">
+          <div class="row">
+            <label>
+              <span>Nombre</span>
+              <input type="text" name="name" placeholder="Ej. Jesús" required />
+            </label>
+            <label>
+              <span>Rol</span>
+              <input type="text" name="role" placeholder="Ej. Supervisor" required />
+            </label>
+          </div>
+
+          <div class="row">
+            <label class="checkbox">
+              <input type="checkbox" name="active" checked />
+              <span>Activo</span>
+            </label>
+
+            <label>
+              <span>ID (para editar/eliminar)</span>
+              <input type="number" name="user_id" min="1" placeholder="Ej. 1" />
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="btn primary" type="submit">Crear (POST)</button>
+            <button class="btn" type="button" id="btnUpdateUser">Actualizar (PUT)</button>
+            <button class="btn danger" type="button" id="btnDeleteUser">Eliminar (DELETE)</button>
+            <button class="btn ghost" type="button" id="btnSeedUsers">Cargar ejemplo</button>
+          </div>
+        </form>
+
+        <div class="tableWrap">
+          <table class="table" aria-label="Listado de usuarios">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Rol</th>
+                <th>Activo</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="usersTbody">
+              <tr><td colspan="5" class="muted">Sin datos…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card__header">
+          <h2>Paquetes</h2>
+          <button class="btn" id="btnRefreshPackages">Actualizar</button>
+        </div>
+
+        <form class="form" id="formPackage">
+          <label>
+            <span>Descripción</span>
+            <input type="text" name="description" placeholder="Ej. Caja con playeras" required />
+          </label>
+          <label>
+            <span>Origen</span>
+            <input type="text" name="origin" placeholder="Ej. Tijuana" required />
+          </label>
+          <div class="actions">
+            <button class="btn primary" type="submit">Registrar paquete</button>
+            <button class="btn ghost" type="button" id="btnSeedPackages">Cargar ejemplo</button>
+          </div>
+        </form>
+
+        <div class="tableWrap">
+          <table class="table" aria-label="Listado de paquetes">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Origen</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="packagesTbody">
+              <tr><td colspan="4" class="muted">Sin datos…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="card card--full">
+        <div class="card__header">
+          <h2>Asistencia</h2>
+          <button class="btn" id="btnRefreshAttendance">Actualizar</button>
+        </div>
+
+        <form class="form" id="formAttendance">
+          <div class="row">
+            <label>
+              <span>Usuario (ID)</span>
+              <input type="number" name="user_id" min="1" placeholder="Ej. 1" required />
+            </label>
+            <label>
+              <span>Acción</span>
+              <select name="action" required>
+                <option value="check-in">check-in</option>
+                <option value="check-out">check-out</option>
+              </select>
+            </label>
+          </div>
+          <div class="actions">
+            <button class="btn primary" type="submit">Registrar</button>
+            <button class="btn ghost" type="button" id="btnQuickIn">Check-in (ID 1)</button>
+            <button class="btn ghost" type="button" id="btnQuickOut">Check-out (ID 1)</button>
+          </div>
+        </form>
+
+        <div class="tableWrap">
+          <table class="table" aria-label="Listado de asistencia">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>User ID</th>
+                <th>Acción</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody id="attendanceTbody">
+              <tr><td colspan="4" class="muted">Sin datos…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section class="toastArea" id="toastArea" aria-live="polite" aria-atomic="true"></section>
+  </main>
+
+  <footer class="footer">
+    <span class="muted">Hecho para Desarrollo de Software Frontend I • Consumir API con fetch() • UI simple y limpia</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
